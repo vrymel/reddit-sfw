@@ -33,18 +33,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="108"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="much-adorable" translatesAutoresizingMaskIntoConstraints="NO" id="gVX-5w-fWz">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="much-adorable" translatesAutoresizingMaskIntoConstraints="NO" id="gVX-5w-fWz">
                                                     <rect key="frame" x="8" y="8" width="110" height="85"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="85" id="86Q-qx-HJg"/>
+                                                        <constraint firstAttribute="width" constant="110" id="Lgg-t0-J6o"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Much Wow!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gr-Vt-kyQ">
-                                                    <rect key="frame" x="126" y="8" width="209" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Much Wow!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gr-Vt-kyQ">
+                                                    <rect key="frame" x="126" y="8" width="209" height="20"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3Gr-Vt-kyQ" firstAttribute="top" secondItem="MVz-m3-Jyi" secondAttribute="topMargin" id="6HG-TY-4k3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="gVX-5w-fWz" secondAttribute="bottom" constant="7" id="Mbj-Je-KwC"/>
+                                                <constraint firstItem="3Gr-Vt-kyQ" firstAttribute="trailing" secondItem="MVz-m3-Jyi" secondAttribute="trailingMargin" id="Q0t-l5-NfX"/>
+                                                <constraint firstItem="gVX-5w-fWz" firstAttribute="top" secondItem="MVz-m3-Jyi" secondAttribute="topMargin" id="Reb-ZM-lWh"/>
+                                                <constraint firstItem="3Gr-Vt-kyQ" firstAttribute="leading" secondItem="gVX-5w-fWz" secondAttribute="trailing" constant="8" id="qAb-rj-jZi"/>
+                                                <constraint firstItem="gVX-5w-fWz" firstAttribute="leading" secondItem="MVz-m3-Jyi" secondAttribute="leadingMargin" id="qp0-3q-lHZ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="entryThumbnail" destination="gVX-5w-fWz" id="7as-Nq-vpQ"/>
