@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
-        let url = URL(string: "http://reddit.com/r/civ.json")
+        let url = URL(string: "http://reddit.com/.json")
         
         Alamofire.request(url!).responseJSON { response in
             
