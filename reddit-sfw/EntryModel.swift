@@ -9,27 +9,71 @@
 import Foundation
 
 class EntryModel {
-    var _title: String!
-    var _thumbnailUrl: String!
+    private var _subreddit: String!
+    private var _title: String!
+    private var _thumbnailUrl: String!
+    private var _owner: String!
+    private var _commentsNumber: Int!
     
+    
+    var subreddit: String {
+        get {
+            if _subreddit == nil {
+                _subreddit = ""
+            }
+            
+            return _subreddit
+        }
+        set(newValue) {
+            _subreddit = newValue
+        }
+    }
     var title: String {
-        if _title == nil {
-            _title = ""
-        }
+        get {
+            if _title == nil {
+                _title = ""
+            }
         
-        return _title
+            return _title
+        }
+        set(newValue) {
+            _title = newValue
+        }
     }
-    
     var thumbnailUrl: String {
-        if _thumbnailUrl == nil {
-            _thumbnailUrl = ""
-        }
+        get {
+            if _thumbnailUrl == nil {
+                _thumbnailUrl = ""
+            }
         
-        return _thumbnailUrl
+            return _thumbnailUrl
+        }
+        set(newValue) {
+            _thumbnailUrl = newValue
+        }
     }
-    
-    init(title: String, thumbnailUrl: String) {
-        self._title = title
-        self._thumbnailUrl = thumbnailUrl
+    var owner: String {
+        get {
+            if _owner == nil {
+                _owner = ""
+            }
+        
+            return _owner
+        }
+        set(newValue) {
+            _owner = newValue
+        }
+    }
+    var commentsNumber: Int {
+        get {
+            if _commentsNumber == nil {
+                _commentsNumber = 0
+            }
+            
+            return _commentsNumber
+        }
+        set(newValue) {
+            _commentsNumber = newValue
+        }
     }
 }

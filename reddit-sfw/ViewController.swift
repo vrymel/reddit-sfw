@@ -36,12 +36,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         
                         if let entryData = entry["data"] as? Dictionary<String, AnyObject> {
                             
+                            let entrySubreddit = entryData["subreddit"] as? String
                             let entryTitle = entryData["title"] as? String
                             let entryThumbnailUrl = entryData["thumbnail"] as? String
+                            let entryOwner = entryData["author"] as? String
+                            let entryCommentsCount = entryData["num_comments"] as? Int
                             
                             if entryTitle != nil && entryThumbnailUrl != nil {
-                                //print("\(entryTitle) - \(entryThumbnailUrl)")
-                                self.entriesTitle.append( EntryModel(title: entryTitle!, thumbnailUrl: entryThumbnailUrl!) )
+                                
+                                let em = EntryModel()
+                                em.subreddit = entrySubreddit!
+                                em.title = entryTitle!
+                                em.thumbnailUrl = entryThumbnailUrl!
+                                em.owner = entryOwner!
+                                em.commentsNumber = entryCommentsCount!
+                                
+                                self.entriesTitle.append(em)
                             }
                         }
                     }

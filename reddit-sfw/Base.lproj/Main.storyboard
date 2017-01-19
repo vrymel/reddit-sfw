@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,23 +18,23 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OhH-xx-oWb">
-                                <rect key="frame" x="0.0" y="55" width="375" height="612"/>
+                                <rect key="frame" x="0.0" y="55" width="320" height="513"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.83794623613357544" green="0.85252392292022705" blue="0.86599689722061157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="redditCell" rowHeight="140" id="DkX-Mn-BKH" customClass="EntryTableViewCell" customModule="reddit_sfw" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="140"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DkX-Mn-BKH" id="MVz-m3-Jyi">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d14-25-ENI">
-                                                    <rect key="frame" x="8" y="5" width="359" height="133"/>
+                                                    <rect key="frame" x="8" y="5" width="304" height="133"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="much-adorable" translatesAutoresizingMaskIntoConstraints="NO" id="gVX-5w-fWz">
                                                             <rect key="frame" x="8" y="8" width="110" height="85"/>
@@ -44,28 +44,52 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/r/Philippines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhG-7M-Obi">
-                                                            <rect key="frame" x="124" y="8" width="227" height="12"/>
+                                                            <rect key="frame" x="124" y="8" width="172" height="12"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
                                                             <color key="textColor" red="0.5518182219288057" green="0.56404889557345483" blue="0.56947344904623654" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Much Wow!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gr-Vt-kyQ">
-                                                            <rect key="frame" x="124" y="25" width="227" height="16.5"/>
+                                                            <rect key="frame" x="124" y="25" width="172" height="17"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                             <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="doge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3R-dA-5FD">
+                                                            <rect key="frame" x="8" y="101" width="110" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="110" id="PXB-g3-rfC"/>
+                                                                <constraint firstAttribute="height" constant="23" id="u12-ER-9PP"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
+                                                            <color key="textColor" red="0.55181822189999996" green="0.56404889560000004" blue="0.56947344899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1047 comments" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cR-yV-7R3">
+                                                            <rect key="frame" x="186" y="103" width="110" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="OFK-xR-rlh"/>
+                                                                <constraint firstAttribute="width" constant="110" id="q20-aS-Zdj"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
+                                                            <color key="textColor" red="0.55181822189999996" green="0.56404889560000004" blue="0.56947344899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.94526582956314087" green="0.95278340578079224" blue="0.95902889966964722" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="5cR-yV-7R3" secondAttribute="trailing" constant="8" id="Cdf-2d-TjI"/>
                                                         <constraint firstItem="gVX-5w-fWz" firstAttribute="top" secondItem="d14-25-ENI" secondAttribute="top" constant="8" id="Cti-71-NGw"/>
                                                         <constraint firstItem="3Gr-Vt-kyQ" firstAttribute="trailing" secondItem="qhG-7M-Obi" secondAttribute="trailing" id="Kie-LB-iAs"/>
                                                         <constraint firstItem="3Gr-Vt-kyQ" firstAttribute="leading" secondItem="qhG-7M-Obi" secondAttribute="leading" id="LnA-Wg-Av7"/>
                                                         <constraint firstAttribute="trailing" secondItem="qhG-7M-Obi" secondAttribute="trailing" constant="8" id="LuZ-mA-wvV"/>
+                                                        <constraint firstAttribute="bottom" secondItem="5cR-yV-7R3" secondAttribute="bottom" constant="7" id="QVB-3N-PiN"/>
+                                                        <constraint firstItem="z3R-dA-5FD" firstAttribute="leading" secondItem="d14-25-ENI" secondAttribute="leading" constant="8" id="Rd4-iG-Nuw"/>
                                                         <constraint firstItem="qhG-7M-Obi" firstAttribute="top" secondItem="d14-25-ENI" secondAttribute="top" constant="8" id="b0m-dx-Z3I"/>
                                                         <constraint firstItem="3Gr-Vt-kyQ" firstAttribute="top" secondItem="qhG-7M-Obi" secondAttribute="bottom" constant="5" id="eo6-bN-GeQ"/>
                                                         <constraint firstItem="gVX-5w-fWz" firstAttribute="leading" secondItem="d14-25-ENI" secondAttribute="leading" constant="8" id="fpN-s9-538"/>
                                                         <constraint firstItem="qhG-7M-Obi" firstAttribute="leading" secondItem="gVX-5w-fWz" secondAttribute="trailing" constant="6" id="j2Q-D4-MWe"/>
+                                                        <constraint firstItem="z3R-dA-5FD" firstAttribute="top" secondItem="gVX-5w-fWz" secondAttribute="bottom" constant="8" id="jIh-SO-AtH"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -80,16 +104,19 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="entryThumbnail" destination="gVX-5w-fWz" id="7as-Nq-vpQ"/>
+                                            <outlet property="postCommentsCount" destination="5cR-yV-7R3" id="0FE-2w-b8F"/>
+                                            <outlet property="postOwner" destination="z3R-dA-5FD" id="KKZ-RX-c5u"/>
+                                            <outlet property="subredditLabel" destination="qhG-7M-Obi" id="w6k-6p-sTj"/>
                                             <outlet property="titleLabel" destination="3Gr-Vt-kyQ" id="RwK-12-FWA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePR-6w-Jhe">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePR-6w-Jhe" userLabel="Navigation Header">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="front" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqS-kG-k5U">
-                                        <rect key="frame" x="101.5" y="26" width="172" height="21"/>
+                                        <rect key="frame" x="74" y="26" width="172" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="172" id="YuF-cI-ToO"/>
                                         </constraints>
