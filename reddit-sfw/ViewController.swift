@@ -19,6 +19,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        navigationController?.navigationBar.barTintColor = UIColor(red: 53/255, green: 165/255, blue: 187/255, alpha: 0.3)
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.tintColor = UIColor.white
+
+        print(NSForegroundColorAttributeName)
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -83,5 +89,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let entryIndex: Int = indexPath[1]
+        let entry: EntryModel = entriesTitle[entryIndex]
+        
+        performSegue(withIdentifier: "ToEntryComments", sender: entry)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EntryCommentsViewController {
+            if let entry = sender as? EntryModel {
+                destination.entry = entry
+            }
+        }
+    }
 }
 
