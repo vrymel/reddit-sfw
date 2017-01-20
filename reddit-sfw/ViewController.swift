@@ -42,6 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         
                         if let entryData = entry["data"] as? Dictionary<String, AnyObject> {
                             
+                            let entryId = entryData["id"] as? String
                             let entrySubreddit = entryData["subreddit"] as? String
                             let entryTitle = entryData["title"] as? String
                             let entryThumbnailUrl = entryData["thumbnail"] as? String
@@ -50,7 +51,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             
                             if entryTitle != nil && entryThumbnailUrl != nil {
                                 
-                                let em = EntryModel()
+                                let em = EntryModel(id: entryId!)
                                 em.subreddit = entrySubreddit!
                                 em.title = entryTitle!
                                 em.thumbnailUrl = entryThumbnailUrl!

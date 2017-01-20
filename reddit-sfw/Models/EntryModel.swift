@@ -9,13 +9,19 @@
 import Foundation
 
 class EntryModel {
+    
+    private var _id: String!
     private var _subreddit: String!
     private var _title: String!
     private var _thumbnailUrl: String!
     private var _owner: String!
     private var _commentsNumber: Int!
     
-    
+    var id: String {
+        get {
+            return _id
+        }
+    }
     var subreddit: String {
         get {
             if _subreddit == nil {
@@ -75,5 +81,10 @@ class EntryModel {
         set(newValue) {
             _commentsNumber = newValue
         }
+    }
+    
+    
+    init(id: String) {
+        _id = id
     }
 }

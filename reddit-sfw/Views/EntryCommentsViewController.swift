@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class EntryCommentsViewController: UIViewController {
     
     private var _entry: EntryModel!
+    private var comments = [CommentModel]()
     
     @IBOutlet weak var postCommentsCount: UILabel!
     @IBOutlet weak var postOwner: UILabel!
@@ -45,7 +47,61 @@ class EntryCommentsViewController: UIViewController {
         } catch {
             
         }
+        
+        
+        let url = URL(string: "https://www.reddit.com/r/\(entry.subreddit)/comments/\(entry.id)/.json")
+        
+        Alamofire.request(url!).responseJSON { response in
+            
+            if let rootKey = response.result.value as? [AnyObject] {
+                //let data = rootKey["data"]
+                
+                
+                for list in rootKey {
+                    
+                    if let listing = list as? Dictionary<String, AnyObject> {
+                        
+                        self.processListing(listing: listing)
+                    } else {
+                        
+                        print("cast failed")
+                    }
+                    
+                    
+                }
+            }
+            
+        }
     }
     
-
+    func processListing(listing: Dictionary<String, AnyObject>) {
+        
+        if let data = listing["data"] as? Dictionary<String, AnyObject> {
+            
+            if let children = data["children"] as? [Dictionary<String, AnyObject>] {
+                
+                for child in children {
+                    
+                    if let kind = child["kind"] as? String, kind == "t1" {
+                        
+                        self.processComment(comment: child)
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    func processComment(comment: Dictionary<String, AnyObject>) {
+        
+        let details: Dictionary<String, AnyObject> = (comment["data"] as? Dictionary<String, AnyObject>)!
+        
+        let cm = CommentModel()
+        cm.author = details["author"] as! String
+        cm.score = details["score"] as! Int
+        cm.body = details["body"] as! String
+        
+        
+        comments.append(cm)
+    }
 }
