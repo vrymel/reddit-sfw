@@ -36,7 +36,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d14-25-ENI">
                                                     <rect key="frame" x="0.0" y="5" width="320" height="134"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="much-adorable" translatesAutoresizingMaskIntoConstraints="NO" id="gVX-5w-fWz">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge-default" translatesAutoresizingMaskIntoConstraints="NO" id="gVX-5w-fWz">
                                                             <rect key="frame" x="8" y="8" width="110" height="85"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="110" id="Fbe-QU-iN1"/>
@@ -148,7 +148,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzU-Wy-WOk">
                                 <rect key="frame" x="0.0" y="64" width="320" height="134"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="much-adorable" translatesAutoresizingMaskIntoConstraints="NO" id="FIN-ch-Y9M">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge-default" translatesAutoresizingMaskIntoConstraints="NO" id="FIN-ch-Y9M">
                                         <rect key="frame" x="8" y="8" width="110" height="85"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="110" id="F3m-pA-vgj"/>
@@ -310,6 +310,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="much-adorable" width="500" height="500"/>
+        <image name="doge-default" width="626" height="483"/>
     </resources>
 </document>

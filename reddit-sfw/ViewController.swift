@@ -14,19 +14,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     
     var entriesTitle = [EntryModel]()
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+        
         navigationController?.navigationBar.barTintColor = UIColor(red: 53/255, green: 165/255, blue: 187/255, alpha: 0.3)
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
 
-        print(NSForegroundColorAttributeName)
-        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        fetchSubreddit()
+        
+    }
+    
+    func fetchSubreddit() {
+        
+        entriesTitle.removeAll()
         
         let url = URL(string: "http://reddit.com/.json")
         
@@ -62,10 +74,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             }
                         }
                     }
+                    
+                    self.refreshControl.endRefreshing()
                     self.tableView.reloadData()
                 }
             }
         }
+    }
+    
+    func refresh(sender: AnyObject) {
+        
+        fetchSubreddit()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
