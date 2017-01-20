@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class EntryCommentsViewController: UIViewController {
+class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var _entry: EntryModel!
     private var comments = [CommentModel]()
@@ -19,6 +19,7 @@ class EntryCommentsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var entryThumbnail: UIImageView!
     @IBOutlet weak var subredditLabel: UILabel!
+    @IBOutlet weak var commentsTableView: UITableView!
     
     var entry: EntryModel {
         get {
@@ -31,6 +32,9 @@ class EntryCommentsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        commentsTableView.delegate = self
+        commentsTableView.dataSource = self
 
         titleLabel.text = entry.title
         postOwner.text = entry.owner
@@ -69,9 +73,32 @@ class EntryCommentsViewController: UIViewController {
                     
                     
                 }
+                
+                self.commentsTableView.reloadData()
             }
             
         }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? CommentViewCell {
+            
+            let c = self.comments[indexPath.row]
+            
+            cell.configureCell(comment: c)
+            
+            return cell
+        }
+        
+        return CommentViewCell()
     }
     
     func processListing(listing: Dictionary<String, AnyObject>) {

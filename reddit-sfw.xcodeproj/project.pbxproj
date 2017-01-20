@@ -15,6 +15,7 @@
 		520C00901E2C5F6A00D1868C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520C008E1E2C5F6A00D1868C /* LaunchScreen.storyboard */; };
 		52B8BED91E305E8300006934 /* EntryCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8BED81E305E8300006934 /* EntryCommentsViewController.swift */; };
 		52B8BEDB1E31A01F00006934 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8BEDA1E31A01F00006934 /* CommentModel.swift */; };
+		52B8BEDD1E31A47500006934 /* CommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8BEDC1E31A47500006934 /* CommentViewCell.swift */; };
 		9129031DF20DBE96F995F9A5 /* EntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912903A186301C61E08A4B4A /* EntryModel.swift */; };
 		91290BECD44BC6382C3E43E6 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91290F36BD11B588CADF6A09 /* EntryTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -29,6 +30,7 @@
 		520C00911E2C5F6A00D1868C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B8BED81E305E8300006934 /* EntryCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCommentsViewController.swift; sourceTree = "<group>"; };
 		52B8BEDA1E31A01F00006934 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		52B8BEDC1E31A47500006934 /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		5A3D3CB5E3C4DF5510D8919B /* Pods-reddit-sfw.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reddit-sfw.release.xcconfig"; path = "Pods/Target Support Files/Pods-reddit-sfw/Pods-reddit-sfw.release.xcconfig"; sourceTree = "<group>"; };
 		62CEE17AC7C92B1D8008E8E9 /* Pods-reddit-sfw.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reddit-sfw.debug.xcconfig"; path = "Pods/Target Support Files/Pods-reddit-sfw/Pods-reddit-sfw.debug.xcconfig"; sourceTree = "<group>"; };
 		912903A186301C61E08A4B4A /* EntryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryModel.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				520C00841E2C5F6A00D1868C /* ViewController.swift */,
 				91290F36BD11B588CADF6A09 /* EntryTableViewCell.swift */,
 				52B8BED81E305E8300006934 /* EntryCommentsViewController.swift */,
+				52B8BEDC1E31A47500006934 /* CommentViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				52B8BEDB1E31A01F00006934 /* CommentModel.swift in Sources */,
 				520C00831E2C5F6A00D1868C /* AppDelegate.swift in Sources */,
 				91290BECD44BC6382C3E43E6 /* EntryTableViewCell.swift in Sources */,
+				52B8BEDD1E31A47500006934 /* CommentViewCell.swift in Sources */,
 				52B8BED91E305E8300006934 /* EntryCommentsViewController.swift in Sources */,
 				9129031DF20DBE96F995F9A5 /* EntryModel.swift in Sources */,
 			);
