@@ -36,48 +36,62 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         commentsTableView.delegate = self
         commentsTableView.dataSource = self
 
+        prepareDisplay()
+    }
+    
+    func prepareDisplay() {
         titleLabel.text = entry.title
         postOwner.text = entry.owner
         postCommentsCount.text = "\(entry.commentsNumber) comments"
         subredditLabel.text = "/r/\(entry.subreddit)"
         
-        do {
-            let _entryUrl = URL(string: entry.thumbnailUrl)
-            var imageData: Data
-            
-            try imageData = Data(contentsOf: _entryUrl!)
-            
-            entryThumbnail.image = UIImage(data: imageData)
-        } catch {
-            
+        DispatchQueue.global().async {
+            do {
+                let _entryUrl = URL(string: self.entry.thumbnailUrl)
+                var imageData: Data
+                
+                try imageData = Data(contentsOf: _entryUrl!)
+                
+                DispatchQueue.global().sync {
+                    self.entryThumbnail.image = UIImage(data: imageData)
+                }
+        
+            } catch {
+                // #thuglife!
+            }
         }
+        
+        
         
         
         let url = URL(string: "https://www.reddit.com/r/\(entry.subreddit)/comments/\(entry.id)/.json")
         
-        Alamofire.request(url!).responseJSON { response in
-            
-            if let rootKey = response.result.value as? [AnyObject] {
-                //let data = rootKey["data"]
+        DispatchQueue.global().async {
+            Alamofire.request(url!).responseJSON { response in
                 
-                
-                for list in rootKey {
+                if let rootKey = response.result.value as? [AnyObject] {
+                    //let data = rootKey["data"]
                     
-                    if let listing = list as? Dictionary<String, AnyObject> {
+                    
+                    for list in rootKey {
                         
-                        self.processListing(listing: listing)
-                    } else {
+                        if let listing = list as? Dictionary<String, AnyObject> {
+                            
+                            self.processListing(listing: listing)
+                        } else {
+                            
+                            print("cast failed")
+                        }
                         
-                        print("cast failed")
+                        
                     }
                     
-                    
+                    self.commentsTableView.reloadData()
                 }
                 
-                self.commentsTableView.reloadData()
             }
-            
         }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

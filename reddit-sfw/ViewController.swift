@@ -42,44 +42,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let url = URL(string: "http://reddit.com/.json")
         
-        Alamofire.request(url!).responseJSON { response in
-            
-            if let rootKey = response.result.value as? Dictionary<String, AnyObject> {
+        DispatchQueue.global().async {
+            Alamofire.request(url!).responseJSON { response in
                 
-                let data = rootKey["data"]
-                
-                if let entries = data?["children"] as? [Dictionary<String, AnyObject>] {
+                if let rootKey = response.result.value as? Dictionary<String, AnyObject> {
                     
-                    for entry in entries {
+                    let data = rootKey["data"]
+                    
+                    if let entries = data?["children"] as? [Dictionary<String, AnyObject>] {
                         
-                        if let entryData = entry["data"] as? Dictionary<String, AnyObject> {
+                        for entry in entries {
                             
-                            let entryId = entryData["id"] as? String
-                            let entrySubreddit = entryData["subreddit"] as? String
-                            let entryTitle = entryData["title"] as? String
-                            let entryThumbnailUrl = entryData["thumbnail"] as? String
-                            let entryOwner = entryData["author"] as? String
-                            let entryCommentsCount = entryData["num_comments"] as? Int
-                            
-                            if entryTitle != nil && entryThumbnailUrl != nil {
+                            if let entryData = entry["data"] as? Dictionary<String, AnyObject> {
                                 
-                                let em = EntryModel(id: entryId!)
-                                em.subreddit = entrySubreddit!
-                                em.title = entryTitle!
-                                em.thumbnailUrl = entryThumbnailUrl!
-                                em.owner = entryOwner!
-                                em.commentsNumber = entryCommentsCount!
+                                let entryId = entryData["id"] as? String
+                                let entrySubreddit = entryData["subreddit"] as? String
+                                let entryTitle = entryData["title"] as? String
+                                let entryThumbnailUrl = entryData["thumbnail"] as? String
+                                let entryOwner = entryData["author"] as? String
+                                let entryCommentsCount = entryData["num_comments"] as? Int
                                 
-                                self.entriesTitle.append(em)
+                                if entryTitle != nil && entryThumbnailUrl != nil {
+                                    
+                                    let em = EntryModel(id: entryId!)
+                                    em.subreddit = entrySubreddit!
+                                    em.title = entryTitle!
+                                    em.thumbnailUrl = entryThumbnailUrl!
+                                    em.owner = entryOwner!
+                                    em.commentsNumber = entryCommentsCount!
+                                    
+                                    self.entriesTitle.append(em)
+                                }
                             }
                         }
+                        
+                        self.refreshControl.endRefreshing()
+                        self.tableView.reloadData()
                     }
-                    
-                    self.refreshControl.endRefreshing()
-                    self.tableView.reloadData()
                 }
             }
         }
+        
     }
     
     func refresh(sender: AnyObject) {

@@ -21,17 +21,25 @@ class EntryTableViewCell: UITableViewCell {
         titleLabel.text = entryData.title
         postOwner.text = entryData.owner
         postCommentsCount.text = "\(entryData.commentsNumber) comments"
+        entryThumbnail.image = UIImage(named: "doge-default.png")
         
-        do {
-            let _entryUrl = URL(string: entryData.thumbnailUrl)
-            var imageData: Data
-            
-            try imageData = Data(contentsOf: _entryUrl!)
-            
-            entryThumbnail.image = UIImage(data: imageData)
-        } catch {
-            
+        DispatchQueue.global().async {
+            do {
+                let _entryUrl = URL(string: entryData.thumbnailUrl)
+                var imageData: Data
+                
+                try imageData = Data(contentsOf: _entryUrl!)
+                
+                DispatchQueue.global().sync {
+                    self.entryThumbnail.image = UIImage(data: imageData)
+                }
+                
+            } catch {
+                // i should put error handling here, but i wont because #thuglife
+            }
         }
+        
+        
     }
 
 }
