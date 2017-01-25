@@ -24,7 +24,7 @@ class EntryTableViewCell: UITableViewCell {
         postCommentsCount.text      = "\(entryData.commentsNumber) comments"
         
         let thumbnailUrl            = URL(string: entryData.thumbnailUrl)
-        let placeholderThumbnail    = UIImage(named: "doge-default.png")
+        let placeholderThumbnail    = UIImage(named: "reddit-alien.png")
         
         entryThumbnail.kf.setImage(with: thumbnailUrl, placeholder: placeholderThumbnail)
     }

@@ -18,17 +18,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        // navigation bar title stuff
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0/255, green: 134/255, blue: 203/255, alpha: 1.0)
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.tintColor = UIColor.white
+
+        
+        // pull to refresh stuff
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         
-        navigationController?.navigationBar.barTintColor = UIColor(red: 53/255, green: 165/255, blue: 187/255, alpha: 0.3)
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        navigationController?.navigationBar.tintColor = UIColor.white
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         

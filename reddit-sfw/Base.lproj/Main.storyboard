@@ -36,7 +36,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d14-25-ENI">
                                                     <rect key="frame" x="0.0" y="5" width="320" height="134"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge-default" translatesAutoresizingMaskIntoConstraints="NO" id="gVX-5w-fWz">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reddit-alien" translatesAutoresizingMaskIntoConstraints="NO" id="gVX-5w-fWz">
                                                             <rect key="frame" x="8" y="8" width="110" height="85"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="110" id="Fbe-QU-iN1"/>
@@ -123,7 +123,9 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OhH-xx-oWb" secondAttribute="bottom" id="m63-Zo-FKk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="front" id="9FB-2d-DTQ"/>
+                    <navigationItem key="navigationItem" title="front" id="9FB-2d-DTQ">
+                        <barButtonItem key="leftBarButtonItem" image="reddit-alien-button" style="plain" id="hAk-5C-fHF"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="OhH-xx-oWb" id="fRy-em-huK"/>
                         <segue destination="vpk-qq-fyc" kind="show" identifier="ToEntryComments" id="XN8-I1-Acd"/>
@@ -148,7 +150,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzU-Wy-WOk">
                                 <rect key="frame" x="0.0" y="64" width="320" height="134"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge-default" translatesAutoresizingMaskIntoConstraints="NO" id="FIN-ch-Y9M">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reddit-alien" translatesAutoresizingMaskIntoConstraints="NO" id="FIN-ch-Y9M">
                                         <rect key="frame" x="8" y="8" width="110" height="85"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="110" id="F3m-pA-vgj"/>
@@ -208,7 +210,7 @@
                                     <constraint firstAttribute="trailing" secondItem="gez-kv-VnG" secondAttribute="trailing" constant="8" id="ziR-ug-pec"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ai1-fb-bLO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ai1-fb-bLO">
                                 <rect key="frame" x="0.0" y="198" width="320" height="370"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.82740062475204468" green="0.83501285314559937" blue="0.8450356125831604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -310,6 +312,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="doge-default" width="626" height="483"/>
+        <image name="reddit-alien" width="300" height="300"/>
+        <image name="reddit-alien-button" width="23" height="23"/>
     </resources>
 </document>
