@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Kingfisher
 
 class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -40,30 +41,16 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func prepareDisplay() {
-        titleLabel.text = entry.title
-        postOwner.text = entry.owner
-        postCommentsCount.text = "\(entry.commentsNumber) comments"
-        subredditLabel.text = "/r/\(entry.subreddit)"
+        titleLabel.text         = entry.title
+        postOwner.text          = entry.owner
+        postCommentsCount.text  = "\(entry.commentsNumber) comments"
+        subredditLabel.text     = "/r/\(entry.subreddit)"
         
-        DispatchQueue.global().async {
-            do {
-                let _entryUrl = URL(string: self.entry.thumbnailUrl)
-                var imageData: Data
-                
-                try imageData = Data(contentsOf: _entryUrl!)
-                
-                DispatchQueue.global().sync {
-                    self.entryThumbnail.image = UIImage(data: imageData)
-                }
-        
-            } catch {
-                // #thuglife!
-            }
-        }
-        
-        
-        
-        
+        entryThumbnail.kf.setImage(with: URL(string: self.entry.thumbnailUrl))
+        fetchComments()
+    }
+    
+    func fetchComments() {
         let url = URL(string: "https://www.reddit.com/r/\(entry.subreddit)/comments/\(entry.id)/.json")
         
         DispatchQueue.global().async {
@@ -91,7 +78,6 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
                 
             }
         }
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
