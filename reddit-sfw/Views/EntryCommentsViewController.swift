@@ -36,6 +36,8 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         
         commentsTableView.delegate = self
         commentsTableView.dataSource = self
+        commentsTableView.estimatedRowHeight = 80
+        commentsTableView.rowHeight = UITableViewAutomaticDimension
 
         prepareDisplay()
     }
