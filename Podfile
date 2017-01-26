@@ -8,4 +8,5 @@ target 'reddit-sfw' do
   # Pods for reddit-sfw
   pod 'Alamofire', '~> 4.3'
   pod 'Kingfisher', '~> 3.0'
+  pod 'NVActivityIndicatorView'
 end

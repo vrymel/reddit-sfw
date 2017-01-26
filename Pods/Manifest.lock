@@ -1,15 +1,18 @@
 PODS:
   - Alamofire (4.3.0)
   - Kingfisher (3.2.4)
+  - NVActivityIndicatorView (3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - Kingfisher (~> 3.0)
+  - NVActivityIndicatorView
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   Kingfisher: 8d80f39da403cd9c9ee11984e1655f4d6a566cdb
+  NVActivityIndicatorView: 28942c18ced111a6a3ce5e6f5b27d9d40116d639
 
-PODFILE CHECKSUM: 3d661db44734787de040891e080fcff17bfbd9b7
+PODFILE CHECKSUM: f55316270bd0fc0e6bc46713a14f16381dc25299
 
 COCOAPODS: 1.1.1

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import Kingfisher
+import NVActivityIndicatorView
 
 class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,6 +22,7 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var entryThumbnail: UIImageView!
     @IBOutlet weak var subredditLabel: UILabel!
     @IBOutlet weak var commentsTableView: UITableView!
+    @IBOutlet weak var loadingActivityView: NVActivityIndicatorView!
     
     var entry: EntryModel {
         get {
@@ -38,7 +40,7 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         commentsTableView.dataSource = self
         commentsTableView.estimatedRowHeight = 80
         commentsTableView.rowHeight = UITableViewAutomaticDimension
-
+        
         prepareDisplay()
     }
     
@@ -54,6 +56,8 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func fetchComments() {
         let url = URL(string: "https://www.reddit.com/r/\(entry.subreddit)/comments/\(entry.id)/.json")
+        
+        loadingActivityView.startAnimating()
         
         DispatchQueue.global().async {
             Alamofire.request(url!).responseJSON { response in
@@ -75,8 +79,11 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
                         
                     }
                     
+                    
                     self.commentsTableView.reloadData()
                 }
+                
+                self.loadingActivityView.stopAnimating()
                 
             }
         }

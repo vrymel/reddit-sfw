@@ -8,13 +8,15 @@
 
 import UIKit
 import Alamofire
+import NVActivityIndicatorView
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingIndicatorView: NVActivityIndicatorView!
     
-    var entriesTitle = [EntryModel]()
-    var refreshControl: UIRefreshControl!
+    private var entriesTitle = [EntryModel]()
+    private var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,17 +33,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         
-        
         tableView.delegate = self
         tableView.dataSource = self
         
         fetchSubreddit()
-        
     }
     
     func fetchSubreddit() {
         
         entriesTitle.removeAll()
+        loadingIndicatorView.startAnimating()
         
         let url = URL(string: "http://reddit.com/.json")
         
@@ -83,6 +84,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         self.tableView.reloadData()
                     }
                 }
+                
+                self.loadingIndicatorView.stopAnimating()
             }
         }
         

@@ -116,8 +116,24 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lxu-v1-FDB" userLabel="Loading Indicator" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="145" y="269" width="30" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="PFh-KM-ZU1"/>
+                                    <constraint firstAttribute="width" constant="30" id="n7a-k3-7GV"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="0.0151581848" green="0.65738910439999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="Pacman"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Lxu-v1-FDB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="GBm-zt-3Bm"/>
+                            <constraint firstItem="Lxu-v1-FDB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JJ7-UG-htW"/>
                             <constraint firstItem="OhH-xx-oWb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Rgf-Zs-YLe"/>
                             <constraint firstAttribute="trailing" secondItem="OhH-xx-oWb" secondAttribute="trailing" id="aD4-Ld-fon"/>
                             <constraint firstItem="OhH-xx-oWb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="g2n-JV-asP"/>
@@ -128,6 +144,7 @@
                         <barButtonItem key="leftBarButtonItem" image="reddit-alien-button" style="plain" id="hAk-5C-fHF"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingIndicatorView" destination="Lxu-v1-FDB" id="DUT-h4-yZN"/>
                         <outlet property="tableView" destination="OhH-xx-oWb" id="fRy-em-huK"/>
                         <segue destination="vpk-qq-fyc" kind="show" identifier="ToEntryComments" id="XN8-I1-Acd"/>
                     </connections>
@@ -267,14 +284,30 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWo-pw-zmv" userLabel="Loading Indicator" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="145" y="269" width="30" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="XNb-Ey-bgm"/>
+                                    <constraint firstAttribute="height" constant="30" id="rsp-zH-fsp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="0.015158184804022312" green="0.65738910436630249" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="Pacman"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.82388216257095337" green="0.83149796724319458" blue="0.84153223037719727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="tWo-pw-zmv" firstAttribute="centerX" secondItem="6Rd-iq-DTP" secondAttribute="centerX" id="3FF-wo-UAh"/>
                             <constraint firstAttribute="trailing" secondItem="mzU-Wy-WOk" secondAttribute="trailing" id="622-Uo-e22"/>
                             <constraint firstAttribute="trailing" secondItem="ai1-fb-bLO" secondAttribute="trailing" id="EBr-T3-o7e"/>
                             <constraint firstItem="mzU-Wy-WOk" firstAttribute="leading" secondItem="6Rd-iq-DTP" secondAttribute="leading" id="N3X-uv-7za"/>
                             <constraint firstItem="mzU-Wy-WOk" firstAttribute="top" secondItem="6Rd-iq-DTP" secondAttribute="top" constant="64" id="Orr-ZY-B5X"/>
                             <constraint firstItem="ai1-fb-bLO" firstAttribute="leading" secondItem="6Rd-iq-DTP" secondAttribute="leading" id="Url-w4-28o"/>
+                            <constraint firstItem="tWo-pw-zmv" firstAttribute="centerY" secondItem="6Rd-iq-DTP" secondAttribute="centerY" id="YpX-Tj-6O0"/>
                             <constraint firstItem="ai1-fb-bLO" firstAttribute="top" secondItem="mzU-Wy-WOk" secondAttribute="bottom" id="apZ-C0-K0Z"/>
                             <constraint firstItem="3VK-tt-Z3i" firstAttribute="top" secondItem="ai1-fb-bLO" secondAttribute="bottom" id="wsB-eE-2d2"/>
                         </constraints>
@@ -282,6 +315,7 @@
                     <connections>
                         <outlet property="commentsTableView" destination="ai1-fb-bLO" id="5Ma-WI-x86"/>
                         <outlet property="entryThumbnail" destination="FIN-ch-Y9M" id="92N-86-3ux"/>
+                        <outlet property="loadingActivityView" destination="tWo-pw-zmv" id="riU-uL-m6f"/>
                         <outlet property="postCommentsCount" destination="bAY-ud-j74" id="vm9-Wh-M7F"/>
                         <outlet property="postOwner" destination="dmp-sp-9AR" id="DVE-kK-ZEL"/>
                         <outlet property="subredditLabel" destination="gez-kv-VnG" id="y9Z-a3-Bm2"/>
