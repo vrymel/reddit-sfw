@@ -13,6 +13,7 @@ import NVActivityIndicatorView
 
 class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var entryDetailsView: UIView!
     @IBOutlet weak var postCommentsCount: UILabel!
     @IBOutlet weak var postOwner: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -41,7 +42,16 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         commentsTableView.estimatedRowHeight    = 80
         commentsTableView.rowHeight             = UITableViewAutomaticDimension
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(EntryCommentsViewController.entryDetailsTapAction(_:)))
+        entryDetailsView.addGestureRecognizer(gesture)
+        
         prepareDisplay()
+    }
+    
+    func entryDetailsTapAction(_ sender:UITapGestureRecognizer) {
+        if _entry.isSelf == false {
+            performSegue(withIdentifier: "ToExternalEntryURLFromComments", sender: nil)
+        }
     }
     
     func prepareDisplay() {
@@ -119,5 +129,11 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         cm.body = details["body"] as! String
         
         comments.append(cm)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ExternalEntryURLViewController {
+            destination.entry = _entry
+        }
     }
 }

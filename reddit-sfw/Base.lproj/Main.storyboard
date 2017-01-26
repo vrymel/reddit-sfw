@@ -198,6 +198,7 @@
                             <constraint firstAttribute="trailing" secondItem="GrI-xe-aix" secondAttribute="trailing" id="vqZ-rX-2c0"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="04j-Ja-8vB"/>
                     <connections>
                         <outlet property="loadingIndicatorView" destination="R16-Ok-BUQ" id="IX1-KP-f2H"/>
                         <outlet property="webView" destination="GrI-xe-aix" id="Y6k-ib-M96"/>
@@ -205,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04r-2A-qh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1571.25" y="858.80281690140851"/>
+            <point key="canvasLocation" x="1573" y="858"/>
         </scene>
         <!--Select Subreddit View Controller-->
         <scene sceneID="bWE-GW-GNW">
@@ -487,12 +488,14 @@
                     </view>
                     <connections>
                         <outlet property="commentsTableView" destination="ai1-fb-bLO" id="5Ma-WI-x86"/>
+                        <outlet property="entryDetailsView" destination="mzU-Wy-WOk" id="imr-yt-xBg"/>
                         <outlet property="entryThumbnail" destination="FIN-ch-Y9M" id="92N-86-3ux"/>
                         <outlet property="loadingActivityView" destination="tWo-pw-zmv" id="riU-uL-m6f"/>
                         <outlet property="postCommentsCount" destination="bAY-ud-j74" id="vm9-Wh-M7F"/>
                         <outlet property="postOwner" destination="dmp-sp-9AR" id="DVE-kK-ZEL"/>
                         <outlet property="subredditLabel" destination="gez-kv-VnG" id="y9Z-a3-Bm2"/>
                         <outlet property="titleLabel" destination="350-4L-1Zm" id="idB-5F-Wrm"/>
+                        <segue destination="c5U-hN-4Eg" kind="show" identifier="ToExternalEntryURLFromComments" id="GNw-CM-VQD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxA-Li-1Wi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -522,4 +525,7 @@
         <image name="reddit-alien" width="300" height="300"/>
         <image name="reddit-alien-button" width="23" height="23"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="GNw-CM-VQD"/>
+    </inferredMetricsTieBreakers>
 </document>
