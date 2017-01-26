@@ -139,13 +139,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="front" id="9FB-2d-DTQ">
-                        <barButtonItem key="leftBarButtonItem" image="reddit-alien-button" style="plain" id="hAk-5C-fHF"/>
+                        <barButtonItem key="leftBarButtonItem" image="reddit-alien-button" style="plain" id="hAk-5C-fHF">
+                            <connections>
+                                <action selector="changeSubredditAction:" destination="BYZ-38-t0r" id="JAB-e4-wHJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="loadingIndicatorView" destination="Lxu-v1-FDB" id="DUT-h4-yZN"/>
                         <outlet property="tableView" destination="OhH-xx-oWb" id="fRy-em-huK"/>
                         <segue destination="vpk-qq-fyc" kind="show" identifier="ToEntryComments" id="XN8-I1-Acd"/>
                         <segue destination="c5U-hN-4Eg" kind="show" identifier="ToExternalEntryURL" id="y8t-bZ-WAb"/>
+                        <segue destination="UTh-Fq-MgC" kind="presentation" identifier="ToSelectSubreddit" id="zco-cf-t0m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -201,6 +206,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04r-2A-qh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1571.25" y="858.80281690140851"/>
+        </scene>
+        <!--Select Subreddit View Controller-->
+        <scene sceneID="bWE-GW-GNW">
+            <objects>
+                <viewController id="UTh-Fq-MgC" customClass="SelectSubredditViewController" customModule="reddit_sfw" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F1d-Cu-vLA"/>
+                        <viewControllerLayoutGuide type="bottom" id="R0R-wc-HQ7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZbU-od-bns">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jW-ZH-YGG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Po-Zf-q1j">
+                                        <rect key="frame" x="8" y="27" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="5gU-Xu-sTs"/>
+                                            <constraint firstAttribute="height" constant="30" id="pdy-Lf-jFL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backAction:" destination="UTh-Fq-MgC" eventType="touchUpInside" id="GpG-h9-nCw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gof-nN-M2f">
+                                        <rect key="frame" x="101.5" y="27" width="117" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="K7M-vp-8bH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                        <state key="normal" title="Select Subreddit">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backAction:" destination="UTh-Fq-MgC" eventType="touchUpInside" id="LsO-Kp-kTr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.14638113975524902" green="0.59064871072769165" blue="0.82062625885009766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="8Po-Zf-q1j" firstAttribute="leading" secondItem="9jW-ZH-YGG" secondAttribute="leading" constant="8" id="HOR-zC-bqD"/>
+                                    <constraint firstItem="8Po-Zf-q1j" firstAttribute="top" secondItem="9jW-ZH-YGG" secondAttribute="top" constant="27" id="MHL-dJ-3cj"/>
+                                    <constraint firstItem="gof-nN-M2f" firstAttribute="centerX" secondItem="9jW-ZH-YGG" secondAttribute="centerX" id="Tie-af-bXM"/>
+                                    <constraint firstAttribute="height" constant="65" id="l6d-5q-o4Y"/>
+                                    <constraint firstItem="gof-nN-M2f" firstAttribute="top" secondItem="9jW-ZH-YGG" secondAttribute="top" constant="27" id="yZE-8a-Ezd"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Ye-SP-Ky9">
+                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectSubredditCell" id="IhI-Rf-PJQ" customClass="SelectSubredditTableViewCell" customModule="reddit_sfw" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IhI-Rf-PJQ" id="uvQ-V1-j9I">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subreddit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4D-xp-uDu">
+                                                    <rect key="frame" x="16" y="13" width="288" height="19.5"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="e4D-xp-uDu" firstAttribute="centerY" secondItem="uvQ-V1-j9I" secondAttribute="centerY" id="1nw-1X-lN3"/>
+                                                <constraint firstItem="e4D-xp-uDu" firstAttribute="leading" secondItem="uvQ-V1-j9I" secondAttribute="leadingMargin" constant="8" id="62P-3A-kDw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="e4D-xp-uDu" secondAttribute="trailing" constant="8" id="oa2-cS-Vj1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="subredditText" destination="e4D-xp-uDu" id="pIr-F4-eNc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Ye-SP-Ky9" firstAttribute="leading" secondItem="ZbU-od-bns" secondAttribute="leading" id="ANh-dt-KNI"/>
+                            <constraint firstItem="9jW-ZH-YGG" firstAttribute="leading" secondItem="ZbU-od-bns" secondAttribute="leading" id="Eg1-xO-zZS"/>
+                            <constraint firstAttribute="trailing" secondItem="3Ye-SP-Ky9" secondAttribute="trailing" id="Oay-1n-LFU"/>
+                            <constraint firstAttribute="trailing" secondItem="9jW-ZH-YGG" secondAttribute="trailing" id="eam-zH-kzn"/>
+                            <constraint firstItem="R0R-wc-HQ7" firstAttribute="top" secondItem="3Ye-SP-Ky9" secondAttribute="bottom" id="ftY-Ad-8mT"/>
+                            <constraint firstItem="3Ye-SP-Ky9" firstAttribute="top" secondItem="9jW-ZH-YGG" secondAttribute="bottom" id="kOY-dv-e7J"/>
+                            <constraint firstItem="9jW-ZH-YGG" firstAttribute="top" secondItem="ZbU-od-bns" secondAttribute="top" id="oyF-LA-X8m"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="3Ye-SP-Ky9" id="1Qi-KS-DCP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bxc-N3-gGW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1569.375" y="-673.94366197183103"/>
         </scene>
         <!--Entry Comments View Controller-->
         <scene sceneID="7hb-gr-t6x">

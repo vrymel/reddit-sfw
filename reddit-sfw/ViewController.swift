@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import NVActivityIndicatorView
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SelectSubredditViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicatorView: NVActivityIndicatorView!
@@ -52,10 +52,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 if (entriesProcessed.count > 0) {
                     self.entriesTitle = entriesProcessed
-                    self.refreshControl.endRefreshing()
                     self.tableView.reloadData()
                 }
                 
+                self.refreshControl.endRefreshing()
                 self.loadingIndicatorView.stopAnimating()
             }
         }
@@ -170,6 +170,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 destination.entry = entry
             }
         }
+        
+        if let destination = segue.destination as? SelectSubredditViewController {
+            
+            destination.delegate = self
+        }
+    }
+    
+    @IBAction func changeSubredditAction(_ sender: Any) {
+        performSegue(withIdentifier: "ToSelectSubreddit", sender: nil)
+    }
+    
+    func subredditSelected(_ subreddit: SubredditModel) {
+        print("subreddit selected: \(subreddit.displayName)")
     }
 }
 
