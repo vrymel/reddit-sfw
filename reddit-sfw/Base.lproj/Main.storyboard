@@ -127,7 +127,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
                                         <color key="value" red="0.0151581848" green="0.65738910439999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="Pacman"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="BallTrianglePath"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -295,7 +295,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
                                         <color key="value" red="0.015158184804022312" green="0.65738910436630249" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="Pacman"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="BallTrianglePath"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>

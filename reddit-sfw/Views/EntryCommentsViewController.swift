@@ -13,9 +13,6 @@ import NVActivityIndicatorView
 
 class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private var _entry: EntryModel!
-    private var comments = [CommentModel]()
-    
     @IBOutlet weak var postCommentsCount: UILabel!
     @IBOutlet weak var postOwner: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -23,6 +20,9 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var subredditLabel: UILabel!
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var loadingActivityView: NVActivityIndicatorView!
+    
+    private var _entry: EntryModel!
+    private var comments = [CommentModel]()
     
     var entry: EntryModel {
         get {
@@ -36,10 +36,10 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        commentsTableView.delegate = self
-        commentsTableView.dataSource = self
-        commentsTableView.estimatedRowHeight = 80
-        commentsTableView.rowHeight = UITableViewAutomaticDimension
+        commentsTableView.delegate              = self
+        commentsTableView.dataSource            = self
+        commentsTableView.estimatedRowHeight    = 80
+        commentsTableView.rowHeight             = UITableViewAutomaticDimension
         
         prepareDisplay()
     }
@@ -61,22 +61,11 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         
         DispatchQueue.global().async {
             Alamofire.request(url!).responseJSON { response in
-                
                 if let rootKey = response.result.value as? [AnyObject] {
-                    //let data = rootKey["data"]
-                    
-                    
                     for list in rootKey {
-                        
                         if let listing = list as? Dictionary<String, AnyObject> {
-                            
                             self.processListing(listing: listing)
-                        } else {
-                            
-                            print("cast failed")
                         }
-                        
-                        
                     }
                     
                     
@@ -84,7 +73,6 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                 
                 self.loadingActivityView.stopAnimating()
-                
             }
         }
     }
@@ -111,32 +99,24 @@ class EntryCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func processListing(listing: Dictionary<String, AnyObject>) {
-        
         if let data = listing["data"] as? Dictionary<String, AnyObject> {
-            
             if let children = data["children"] as? [Dictionary<String, AnyObject>] {
-                
                 for child in children {
-                    
                     if let kind = child["kind"] as? String, kind == "t1" {
-                        
                         self.processComment(comment: child)
                     }
                 }
             }
         }
-        
     }
     
     func processComment(comment: Dictionary<String, AnyObject>) {
-        
         let details: Dictionary<String, AnyObject> = (comment["data"] as? Dictionary<String, AnyObject>)!
         
         let cm = CommentModel()
         cm.author = details["author"] as! String
         cm.score = details["score"] as! Int
         cm.body = details["body"] as! String
-        
         
         comments.append(cm)
     }

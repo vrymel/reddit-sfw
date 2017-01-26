@@ -22,9 +22,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         // navigation bar title stuff
-        navigationController?.navigationBar.barTintColor = UIColor(red: 0/255, green: 134/255, blue: 203/255, alpha: 1.0)
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.barTintColor            = UIColor(red: 0/255, green: 134/255, blue: 203/255, alpha: 1.0)
+        navigationController?.navigationBar.titleTextAttributes     = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.tintColor               = UIColor.white
 
         
         // pull to refresh stuff
@@ -40,7 +40,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func fetchSubreddit() {
-        
         entriesTitle.removeAll()
         loadingIndicatorView.startAnimating()
         
@@ -49,40 +48,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         DispatchQueue.global().async {
             Alamofire.request(url!).responseJSON { response in
                 
-                if let rootKey = response.result.value as? Dictionary<String, AnyObject> {
-                    
-                    let data = rootKey["data"]
-                    
-                    if let entries = data?["children"] as? [Dictionary<String, AnyObject>] {
-                        
-                        for entry in entries {
-                            
-                            if let entryData = entry["data"] as? Dictionary<String, AnyObject> {
-                                
-                                let entryId = entryData["id"] as? String
-                                let entrySubreddit = entryData["subreddit"] as? String
-                                let entryTitle = entryData["title"] as? String
-                                let entryThumbnailUrl = entryData["thumbnail"] as? String
-                                let entryOwner = entryData["author"] as? String
-                                let entryCommentsCount = entryData["num_comments"] as? Int
-                                
-                                if entryTitle != nil && entryThumbnailUrl != nil {
-                                    
-                                    let em = EntryModel(id: entryId!)
-                                    em.subreddit = entrySubreddit!
-                                    em.title = entryTitle!
-                                    em.thumbnailUrl = entryThumbnailUrl!
-                                    em.owner = entryOwner!
-                                    em.commentsNumber = entryCommentsCount!
-                                    
-                                    self.entriesTitle.append(em)
-                                }
-                            }
-                        }
-                        
-                        self.refreshControl.endRefreshing()
-                        self.tableView.reloadData()
-                    }
+                let entriesProcessed: [EntryModel] = self.processAPIResponse(response)
+                
+                if (entriesProcessed.count > 0) {
+                    self.entriesTitle = entriesProcessed
+                    self.refreshControl.endRefreshing()
+                    self.tableView.reloadData()
                 }
                 
                 self.loadingIndicatorView.stopAnimating()
@@ -91,8 +62,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    func refresh(sender: AnyObject) {
+    func processAPIResponse(_ response: DataResponse<Any>) -> [EntryModel] {
+        var processedEntries = [EntryModel]()
         
+        if let rootKey = response.result.value as? Dictionary<String, AnyObject> {
+            let data = rootKey["data"]
+            
+            if let entries = data?["children"] as? [Dictionary<String, AnyObject>] {
+                for entry in entries {
+                    if let entryData = entry["data"] as? Dictionary<String, AnyObject>, let em = createEntryObj(entryData) as EntryModel? {
+                        processedEntries.append(em)
+                    }
+                }
+            }
+        }
+        
+        return processedEntries
+    }
+    
+    func createEntryObj(_ entryData: Dictionary<String, AnyObject>) -> EntryModel? {
+        let entryId             = entryData["id"] as? String
+        let entrySubreddit      = entryData["subreddit"] as? String
+        let entryTitle          = entryData["title"] as? String
+        let entryThumbnailUrl   = entryData["thumbnail"] as? String
+        let entryOwner          = entryData["author"] as? String
+        let entryCommentsCount  = entryData["num_comments"] as? Int
+        
+        if entryTitle != nil && entryThumbnailUrl != nil {
+            let em              = EntryModel(id: entryId!)
+            em.subreddit        = entrySubreddit!
+            em.title            = entryTitle!
+            em.thumbnailUrl     = entryThumbnailUrl!
+            em.owner            = entryOwner!
+            em.commentsNumber   = entryCommentsCount!
+            
+            return em
+        }
+        
+        return nil
+    }
+    
+    func refresh(sender: AnyObject) {
         fetchSubreddit()
     }
 
@@ -106,9 +116,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "redditCell", for: indexPath) as? EntryTableViewCell {
-            
             let showEntryTitle = self.entriesTitle[indexPath.row]
-            
             cell.configureCell(entryData: showEntryTitle)
             
             return cell
@@ -119,8 +127,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let entryIndex: Int = indexPath[1]
-        let entry: EntryModel = entriesTitle[entryIndex]
+        let entryIndex: Int     = indexPath[1]
+        let entry: EntryModel   = entriesTitle[entryIndex]
         
         performSegue(withIdentifier: "ToEntryComments", sender: entry)
     }
