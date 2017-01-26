@@ -17,6 +17,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     private var entriesTitle = [EntryModel]()
     private var refreshControl: UIRefreshControl!
+    private var presentingSubreddit: SubredditModel!
+    private var cachedSubredditSelection = [SubredditModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navigationController?.navigationBar.barTintColor            = UIColor(red: 0/255, green: 134/255, blue: 203/255, alpha: 1.0)
         navigationController?.navigationBar.titleTextAttributes     = [NSForegroundColorAttributeName: UIColor.white]
         navigationController?.navigationBar.tintColor               = UIColor.white
-
         
         // pull to refresh stuff
         refreshControl = UIRefreshControl()
@@ -43,8 +44,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         entriesTitle.removeAll()
         loadingIndicatorView.startAnimating()
         
-        let url = URL(string: "http://reddit.com/.json")
+        var subredditUrl = "/"
+        var displayTitle = "front"
+        if presentingSubreddit != nil {
+            subredditUrl = presentingSubreddit.url
+            displayTitle = presentingSubreddit.displayName
+        }
         
+        
+        let url = URL(string: "http://reddit.com\(subredditUrl).json")
         DispatchQueue.global().async {
             Alamofire.request(url!).responseJSON { response in
                 
@@ -57,6 +65,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 self.refreshControl.endRefreshing()
                 self.loadingIndicatorView.stopAnimating()
+                self.navigationItem.title = displayTitle
             }
         }
         
@@ -172,8 +181,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         if let destination = segue.destination as? SelectSubredditViewController {
-            
             destination.delegate = self
+            destination.cachedSubreddits = cachedSubredditSelection
         }
     }
     
@@ -183,6 +192,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func subredditSelected(_ subreddit: SubredditModel) {
         print("subreddit selected: \(subreddit.displayName)")
+        presentingSubreddit = subreddit
+        
+        fetchSubreddit()
+    }
+    
+    func cacheSubredditSelection(_ subreddits: [SubredditModel]) {
+        self.cachedSubredditSelection = subreddits
     }
 }
 

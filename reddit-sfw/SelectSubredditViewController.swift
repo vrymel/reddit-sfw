@@ -8,12 +8,15 @@
 
 import UIKit
 import Alamofire
+import NVActivityIndicatorView
 
 class SelectSubredditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingIndicatorView: NVActivityIndicatorView!
     
     var delegate: SelectSubredditViewControllerDelegate?
+    var cachedSubreddits: [SubredditModel]?
     
     private var subreddits = [SubredditModel]()
     private var defaultSubredditsUrl = URL(string: "https://www.reddit.com/subreddits/.json")
@@ -24,7 +27,11 @@ class SelectSubredditViewController: UIViewController, UITableViewDelegate, UITa
         tableView.delegate = self
         tableView.dataSource = self
         
-        fetchDefaultSubreddits()
+        if cachedSubreddits!.count > 0 {
+            subreddits = cachedSubreddits!
+        } else {
+            fetchDefaultSubreddits()
+        }
     }
 
     @IBAction func backAction(_ sender: Any) {
@@ -32,15 +39,17 @@ class SelectSubredditViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func fetchDefaultSubreddits() {
+        loadingIndicatorView.startAnimating()
+        
         DispatchQueue.global().async {
             Alamofire.request(self.defaultSubredditsUrl!).responseJSON { response in
                 
                 let processedSubreddits: [SubredditModel] = self.processAPIResponse(response)
                 
-                
+                self.loadingIndicatorView.stopAnimating()
                 self.subreddits = processedSubreddits
                 self.tableView.reloadData()
-                
+                self.delegate?.cacheSubredditSelection(self.subreddits)
             }
         }
     }
@@ -107,4 +116,5 @@ class SelectSubredditViewController: UIViewController, UITableViewDelegate, UITa
 
 protocol SelectSubredditViewControllerDelegate {
     func subredditSelected(_ subreddit: SubredditModel)
+    func cacheSubredditSelection(_ subreddits: [SubredditModel])
 }

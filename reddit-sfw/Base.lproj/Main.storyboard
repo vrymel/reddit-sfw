@@ -271,7 +271,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subreddit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4D-xp-uDu">
-                                                    <rect key="frame" x="16" y="13" width="288" height="19.5"/>
+                                                    <rect key="frame" x="16" y="13" width="289" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -280,7 +280,7 @@
                                             <constraints>
                                                 <constraint firstItem="e4D-xp-uDu" firstAttribute="centerY" secondItem="uvQ-V1-j9I" secondAttribute="centerY" id="1nw-1X-lN3"/>
                                                 <constraint firstItem="e4D-xp-uDu" firstAttribute="leading" secondItem="uvQ-V1-j9I" secondAttribute="leadingMargin" constant="8" id="62P-3A-kDw"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="e4D-xp-uDu" secondAttribute="trailing" constant="8" id="oa2-cS-Vj1"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="e4D-xp-uDu" secondAttribute="trailing" constant="7" id="oa2-cS-Vj1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -289,12 +289,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOH-qn-oWZ" userLabel="Loading Indicator" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="145" y="269" width="30" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GOw-Pi-Qz5"/>
+                                    <constraint firstAttribute="width" constant="30" id="nFN-df-3NT"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="0.0151581848" green="0.65738910439999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="BallTrianglePath"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3Ye-SP-Ky9" firstAttribute="leading" secondItem="ZbU-od-bns" secondAttribute="leading" id="ANh-dt-KNI"/>
                             <constraint firstItem="9jW-ZH-YGG" firstAttribute="leading" secondItem="ZbU-od-bns" secondAttribute="leading" id="Eg1-xO-zZS"/>
                             <constraint firstAttribute="trailing" secondItem="3Ye-SP-Ky9" secondAttribute="trailing" id="Oay-1n-LFU"/>
+                            <constraint firstItem="qOH-qn-oWZ" firstAttribute="centerY" secondItem="ZbU-od-bns" secondAttribute="centerY" id="cd1-bc-yeM"/>
+                            <constraint firstItem="qOH-qn-oWZ" firstAttribute="centerX" secondItem="ZbU-od-bns" secondAttribute="centerX" id="chq-yJ-Nve"/>
                             <constraint firstAttribute="trailing" secondItem="9jW-ZH-YGG" secondAttribute="trailing" id="eam-zH-kzn"/>
                             <constraint firstItem="R0R-wc-HQ7" firstAttribute="top" secondItem="3Ye-SP-Ky9" secondAttribute="bottom" id="ftY-Ad-8mT"/>
                             <constraint firstItem="3Ye-SP-Ky9" firstAttribute="top" secondItem="9jW-ZH-YGG" secondAttribute="bottom" id="kOY-dv-e7J"/>
@@ -302,6 +318,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingIndicatorView" destination="qOH-qn-oWZ" id="ZU8-Qn-Dn2"/>
                         <outlet property="tableView" destination="3Ye-SP-Ky9" id="1Qi-KS-DCP"/>
                     </connections>
                 </viewController>
