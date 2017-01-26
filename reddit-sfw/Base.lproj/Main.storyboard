@@ -68,16 +68,14 @@
                                                             <color key="textColor" red="0.55181822189999996" green="0.56404889560000004" blue="0.56947344899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1047 comments" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cR-yV-7R3">
-                                                            <rect key="frame" x="202" y="101" width="110" height="23"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4l-Hm-RUh">
+                                                            <rect key="frame" x="202" y="100" width="110" height="26"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="110" id="gVt-O3-df5"/>
-                                                                <constraint firstAttribute="height" constant="23" id="khp-na-z6V"/>
+                                                                <constraint firstAttribute="width" constant="110" id="jsl-Ix-zgb"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
-                                                            <color key="textColor" red="0.55181822189999996" green="0.56404889560000004" blue="0.56947344899999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <state key="normal" title="Button"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.94526582956314087" green="0.95278340578079224" blue="0.95902889966964722" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -85,15 +83,15 @@
                                                         <constraint firstItem="z3R-dA-5FD" firstAttribute="leading" secondItem="d14-25-ENI" secondAttribute="leading" constant="8" id="0QW-Xy-1Ry"/>
                                                         <constraint firstItem="3Gr-Vt-kyQ" firstAttribute="top" secondItem="qhG-7M-Obi" secondAttribute="bottom" constant="5" id="0ZY-u8-coC"/>
                                                         <constraint firstAttribute="height" constant="134" id="0oX-2r-Ri4"/>
-                                                        <constraint firstAttribute="bottom" secondItem="5cR-yV-7R3" secondAttribute="bottom" constant="10" id="8NA-mB-nDC"/>
                                                         <constraint firstItem="qhG-7M-Obi" firstAttribute="top" secondItem="d14-25-ENI" secondAttribute="top" constant="8" id="BG7-Iw-CrI"/>
                                                         <constraint firstItem="z3R-dA-5FD" firstAttribute="top" secondItem="gVX-5w-fWz" secondAttribute="bottom" constant="8" id="Djl-QR-9OW"/>
                                                         <constraint firstAttribute="trailing" secondItem="qhG-7M-Obi" secondAttribute="trailing" constant="8" id="Eyc-0G-I74"/>
                                                         <constraint firstItem="gVX-5w-fWz" firstAttribute="top" secondItem="d14-25-ENI" secondAttribute="top" constant="8" id="Jmk-sj-Yk2"/>
+                                                        <constraint firstAttribute="bottom" secondItem="d4l-Hm-RUh" secondAttribute="bottom" constant="8" id="OP7-CR-O3x"/>
                                                         <constraint firstItem="3Gr-Vt-kyQ" firstAttribute="leading" secondItem="qhG-7M-Obi" secondAttribute="leading" id="eNN-bk-xBw"/>
                                                         <constraint firstAttribute="bottom" secondItem="z3R-dA-5FD" secondAttribute="bottom" constant="10" id="ixi-n1-AM2"/>
                                                         <constraint firstItem="3Gr-Vt-kyQ" firstAttribute="trailing" secondItem="qhG-7M-Obi" secondAttribute="trailing" id="rdH-dx-9p7"/>
-                                                        <constraint firstAttribute="trailing" secondItem="5cR-yV-7R3" secondAttribute="trailing" constant="8" id="t4q-40-xOz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="d4l-Hm-RUh" secondAttribute="trailing" constant="8" id="s2A-lS-McQ"/>
                                                         <constraint firstItem="qhG-7M-Obi" firstAttribute="leading" secondItem="gVX-5w-fWz" secondAttribute="trailing" constant="6" id="uUu-8H-Z2V"/>
                                                     </constraints>
                                                 </view>
@@ -108,7 +106,7 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="entryThumbnail" destination="gVX-5w-fWz" id="7as-Nq-vpQ"/>
-                                            <outlet property="postCommentsCount" destination="5cR-yV-7R3" id="0FE-2w-b8F"/>
+                                            <outlet property="postCommentsCountBtn" destination="d4l-Hm-RUh" id="Qzq-dF-1ty"/>
                                             <outlet property="postOwner" destination="z3R-dA-5FD" id="KKZ-RX-c5u"/>
                                             <outlet property="subredditLabel" destination="qhG-7M-Obi" id="w6k-6p-sTj"/>
                                             <outlet property="titleLabel" destination="3Gr-Vt-kyQ" id="RwK-12-FWA"/>
@@ -147,11 +145,62 @@
                         <outlet property="loadingIndicatorView" destination="Lxu-v1-FDB" id="DUT-h4-yZN"/>
                         <outlet property="tableView" destination="OhH-xx-oWb" id="fRy-em-huK"/>
                         <segue destination="vpk-qq-fyc" kind="show" identifier="ToEntryComments" id="XN8-I1-Acd"/>
+                        <segue destination="c5U-hN-4Eg" kind="show" identifier="ToExternalEntryURL" id="y8t-bZ-WAb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="735" y="68.661971830985919"/>
+        </scene>
+        <!--External Entry URL View Controller-->
+        <scene sceneID="okh-D3-2J1">
+            <objects>
+                <viewController id="c5U-hN-4Eg" customClass="ExternalEntryURLViewController" customModule="reddit_sfw" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oB4-Sc-ecs"/>
+                        <viewControllerLayoutGuide type="bottom" id="lRl-IS-aro"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CSZ-fz-x7g">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GrI-xe-aix">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R16-Ok-BUQ" userLabel="Loading Indicator" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="145" y="269" width="30" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="i8B-Ni-KVb"/>
+                                    <constraint firstAttribute="width" constant="30" id="tpx-CY-saU"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="0.0151581848" green="0.65738910439999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="BallTrianglePath"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GrI-xe-aix" firstAttribute="leading" secondItem="CSZ-fz-x7g" secondAttribute="leading" id="2PS-rz-wPY"/>
+                            <constraint firstItem="R16-Ok-BUQ" firstAttribute="centerY" secondItem="CSZ-fz-x7g" secondAttribute="centerY" id="TTf-Qn-v9x"/>
+                            <constraint firstItem="GrI-xe-aix" firstAttribute="top" secondItem="CSZ-fz-x7g" secondAttribute="top" id="TV3-kc-eoJ"/>
+                            <constraint firstItem="R16-Ok-BUQ" firstAttribute="centerX" secondItem="CSZ-fz-x7g" secondAttribute="centerX" id="VNt-19-bHe"/>
+                            <constraint firstItem="lRl-IS-aro" firstAttribute="top" secondItem="GrI-xe-aix" secondAttribute="bottom" id="f1N-Tq-8t4"/>
+                            <constraint firstAttribute="trailing" secondItem="GrI-xe-aix" secondAttribute="trailing" id="vqZ-rX-2c0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingIndicatorView" destination="R16-Ok-BUQ" id="IX1-KP-f2H"/>
+                        <outlet property="webView" destination="GrI-xe-aix" id="Y6k-ib-M96"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="04r-2A-qh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1571.25" y="858.80281690140851"/>
         </scene>
         <!--Entry Comments View Controller-->
         <scene sceneID="7hb-gr-t6x">

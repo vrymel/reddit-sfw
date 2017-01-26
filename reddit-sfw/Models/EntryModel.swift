@@ -16,6 +16,8 @@ class EntryModel {
     private var _thumbnailUrl: String!
     private var _owner: String!
     private var _commentsNumber: Int!
+    private var _isSelf: Bool! = true
+    private var _url: String!
     
     var id: String {
         get {
@@ -80,6 +82,22 @@ class EntryModel {
         }
         set(newValue) {
             _commentsNumber = newValue
+        }
+    }
+    var isSelf: Bool {
+        get {
+            return _isSelf
+        }
+        set(newValue) {
+            _isSelf = newValue
+        }
+    }
+    var url: String {
+        get {
+            return _url
+        }
+        set(newValue) {
+            _url = newValue
         }
     }
     

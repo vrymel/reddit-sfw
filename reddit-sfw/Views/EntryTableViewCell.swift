@@ -14,14 +14,15 @@ class EntryTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var entryThumbnail: UIImageView!
     @IBOutlet weak var postOwner: UILabel!
-    @IBOutlet weak var postCommentsCount: UILabel!
     @IBOutlet weak var subredditLabel: UILabel!
+    @IBOutlet weak var postCommentsCountBtn: UIButton!
     
     func configureCell(entryData: EntryModel) {
         subredditLabel.text         = "/r/\(entryData.subreddit)"
         titleLabel.text             = entryData.title
         postOwner.text              = entryData.owner
-        postCommentsCount.text      = "\(entryData.commentsNumber) comments"
+        postCommentsCountBtn.setTitle("\(entryData.commentsNumber) comments"
+, for: .normal)
         
         let thumbnailUrl            = URL(string: entryData.thumbnailUrl)
         let placeholderThumbnail    = UIImage(named: "reddit-alien.png")

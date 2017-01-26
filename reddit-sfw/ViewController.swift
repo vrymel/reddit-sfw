@@ -87,6 +87,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let entryThumbnailUrl   = entryData["thumbnail"] as? String
         let entryOwner          = entryData["author"] as? String
         let entryCommentsCount  = entryData["num_comments"] as? Int
+        let entryIsSelf         = entryData["is_self"] as? Bool
+        let entryUrl            = entryData["url"] as? String
         
         if entryTitle != nil && entryThumbnailUrl != nil {
             let em              = EntryModel(id: entryId!)
@@ -95,6 +97,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             em.thumbnailUrl     = entryThumbnailUrl!
             em.owner            = entryOwner!
             em.commentsNumber   = entryCommentsCount!
+            em.isSelf           = entryIsSelf!
+            em.url              = entryUrl!
             
             return em
         }
@@ -117,6 +121,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "redditCell", for: indexPath) as? EntryTableViewCell {
             let showEntryTitle = self.entriesTitle[indexPath.row]
+            cell.postCommentsCountBtn.tag = indexPath.row
+            cell.postCommentsCountBtn.addTarget(self, action: #selector(ViewController.postCommentsAction(sender:)), for: .touchUpInside)
             cell.configureCell(entryData: showEntryTitle)
             
             return cell
@@ -127,14 +133,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let entryIndex: Int     = indexPath[1]
+        let entry: EntryModel   = entriesTitle[indexPath.row]
+        
+        if entry.isSelf {
+            viewEntryComments(fromModel: entry)
+        } else {
+            performSegue(withIdentifier: "ToExternalEntryURL", sender: entry)
+        }
+    }
+    
+    func postCommentsAction(sender: UIButton) {
+        let entryIndex: Int = sender.tag
+        
+        viewEntryComments(fromIndex: entryIndex)
+    }
+    
+    func viewEntryComments(fromIndex entryIndex: Int) {
         let entry: EntryModel   = entriesTitle[entryIndex]
         
         performSegue(withIdentifier: "ToEntryComments", sender: entry)
     }
     
+    func viewEntryComments(fromModel entryModel: EntryModel) {
+        performSegue(withIdentifier: "ToEntryComments", sender: entryModel)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EntryCommentsViewController {
+            if let entry = sender as? EntryModel {
+                destination.entry = entry
+            }
+        }
+        
+        if let destination = segue.destination as? ExternalEntryURLViewController {
             if let entry = sender as? EntryModel {
                 destination.entry = entry
             }
