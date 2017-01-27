@@ -129,12 +129,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "redditCell", for: indexPath) as? EntryTableViewCell {
-            let showEntryTitle = self.entriesTitle[indexPath.row]
-            cell.postCommentsCountBtn.tag = indexPath.row
-            cell.postCommentsCountBtn.addTarget(self, action: #selector(ViewController.postCommentsAction(sender:)), for: .touchUpInside)
-            cell.configureCell(entryData: showEntryTitle)
+            if entriesTitle.count > indexPath.row {
+                let showEntryTitle = self.entriesTitle[indexPath.row]
+                cell.postCommentsCountBtn.tag = indexPath.row
+                cell.postCommentsCountBtn.addTarget(self, action: #selector(ViewController.postCommentsAction(sender:)), for: .touchUpInside)
+                cell.configureCell(entryData: showEntryTitle)
             
-            return cell
+                return cell
+            }
         }
         
         return EntryTableViewCell()
@@ -191,7 +193,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func subredditSelected(_ subreddit: SubredditModel) {
-        print("subreddit selected: \(subreddit.displayName)")
         presentingSubreddit = subreddit
         
         fetchSubreddit()
